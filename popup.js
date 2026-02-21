@@ -1,5 +1,5 @@
-// Digital Clean Day - Popup Script
-// Handles all UI interactions and cleaning operations
+// Digital Clean Day - Popup Script..
+// Handles all UI interactions and cleaning operations..
 
 // Motivational quotes
 const quotes = [
