@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Digital Clean Day</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <!-- Main Screen -->
+  <div id="mainScreen" class="screen active">
+    <!-- Header with Mode Toggle -->
+    <div class="header">
+      <div class="header-top">
+        <div class="logo-section">
+          <div class="icon-wrapper">
+            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M3 6h18M19 6v14a2 2 0 01-2 2H7a2 2 0 01-2-2V6m3 0V4a2 2 0 012-2h4a2 2 0 012 2v2"/>
+            </svg>
+          </div>
+          <div>
+            <h1>Digital Clean Day</h1>
+            <p class="subtitle">Your mindful browser companion</p>
+          </div>
+        </div>
+        <label class="theme-toggle">
+          <input type="checkbox" id="darkModeToggle">
+          <span class="toggle-slider"></span>
+        </label>
+      </div>
+    </div>
+
+    <!-- Quote Section -->
+    <div class="quote-card">
+      <svg class="quote-icon" viewBox="0 0 24 24" fill="currentColor">
+        <path d="M6 17h3l2-4V7H5v6h3zm8 0h3l2-4V7h-6v6h3z"/>
+      </svg>
+      <p class="quote-text" id="quoteText">A clean digital space leads to a clear mind.</p>
+    </div>
+
+    <!-- Screen Time Progress -->
+    <div class="stats-card">
+      <div class="stat-header">
+        <span class="stat-label">Today's Activity</span>
+        <span class="stat-value" id="screenTime">2h 34m</span>
+      </div>
+      <div class="progress-bar">
+        <div class="progress-fill" id="progressFill" style="width: 65%"></div>
+      </div>
+      <div class="stat-footer">
+        <span class="stat-detail">🎯 Goal: 4h</span>
+        <span class="stat-detail">📊 65% used</span>
+      </div>
+    </div>
+
+    <!-- Clean Mode Toggle -->
+    <div class="mode-card">
+      <div class="mode-info">
+        <div class="mode-icon">✨</div>
+        <div>
+          <h3 class="mode-title">Clean Mode</h3>
+          <p class="mode-desc">Auto-clean while you browse</p>
+        </div>
+      </div>
+      <label class="switch">
+        <input type="checkbox" id="cleanModeToggle">
+        <span class="switch-slider"></span>
+      </label>
+    </div>
+
+    <!-- Cleaning Options -->
+    <div class="section">
+      <h2 class="section-title">Cleaning Options</h2>
+      
+      <label class="option-card">
+        <div class="option-left">
+          <div class="option-icon">🗂️</div>
+          <div class="option-content">
+            <div class="option-title">Unused Tabs</div>
+            <div class="option-desc">Close tabs older than 7 days</div>
+          </div>
+        </div>
+        <input type="checkbox" id="cleanTabs" checked class="custom-checkbox">
+      </label>
+
+      <label class="option-card">
+        <div class="option-left">
+          <div class="option-icon">🍪</div>
+          <div class="option-content">
+            <div class="option-title">Tracking Cookies</div>
+            <div class="option-desc">Remove ads & tracking only</div>
+          </div>
+        </div>
+        <input type="checkbox" id="cleanCookies" checked class="custom-checkbox">
+      </label>
+
+      <label class="option-card">
+        <div class="option-left">
+          <div class="option-icon">💾</div>
+          <div class="option-content">
+            <div class="option-title">Cache & Storage</div>
+            <div class="option-desc">Clear temporary files</div>
+          </div>
+        </div>
+        <input type="checkbox" id="cleanStorage" checked class="custom-checkbox">
+      </label>
+    </div>
+
+    <!-- Schedule Section -->
+    <div class="section">
+      <h2 class="section-title">Auto-Clean Schedule</h2>
+      
+      <div class="schedule-grid">
+        <label class="schedule-option">
+          <input type="radio" name="schedule" value="manual" checked>
+          <span class="schedule-card">
+            <span class="schedule-icon">✋</span>
+            <span class="schedule-label">Manual</span>
+          </span>
+        </label>
+        
+        <label class="schedule-option">
+          <input type="radio" name="schedule" value="weekly">
+          <span class="schedule-card">
+            <span class="schedule-icon">📅</span>
+            <span class="schedule-label">Weekly</span>
+          </span>
+        </label>
+        
+        <label class="schedule-option">
+          <input type="radio" name="schedule" value="biweekly">
+          <span class="schedule-card">
+            <span class="schedule-icon">🗓️</span>
+            <span class="schedule-label">Bi-weekly</span>
+          </span>
+        </label>
+        
+        <label class="schedule-option">
+          <input type="radio" name="schedule" value="monthly">
+          <span class="schedule-card">
+            <span class="schedule-icon">📆</span>
+            <span class="schedule-label">Monthly</span>
+          </span>
+        </label>
+      </div>
+    </div>
+
+    <!-- Action Button -->
+    <button id="cleanBtn" class="primary-btn">
+      <span class="btn-icon">✨</span>
+      <span>Start Cleaning</span>
+      <span class="btn-shine"></span>
+    </button>
+
+    <!-- Quick Links -->
+    <div class="quick-links">
+      <a href="#" id="previewLink" class="link">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+          <path d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/>
+        </svg>
+        Preview
+      </a>
+      <a href="#" id="safeLink" class="link">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+        </svg>
+        Safety
+      </a>
+      <a href="#" id="whyLink" class="link">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="12" cy="12" r="10"/>
+          <path d="M9.09 9a3 3 0 015.83 1c0 2-3 3-3 3"/>
+          <line x1="12" y1="17" x2="12.01" y2="17"/>
+        </svg>
+        Info
+      </a>
+    </div>
+  </div>
+
+  <!-- Preview Screen -->
+  <div id="previewScreen" class="screen">
+    <div class="header">
+      <button class="back-btn" id="backFromPreview">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M19 12H5M12 19l-7-7 7-7"/>
+        </svg>
+      </button>
+      <h1>Preview Clean</h1>
+    </div>
+
+    <div class="preview-grid">
+      <div class="preview-card">
+        <div class="preview-icon">🗂️</div>
+        <div class="preview-number" id="previewTabs">-</div>
+        <div class="preview-label">Unused tabs</div>
+      </div>
+      
+      <div class="preview-card">
+        <div class="preview-icon">🍪</div>
+        <div class="preview-number" id="previewCookies">-</div>
+        <div class="preview-label">Tracking cookies</div>
+      </div>
+      
+      <div class="preview-card">
+        <div class="preview-icon">💾</div>
+        <div class="preview-number" id="previewStorage">~</div>
+        <div class="preview-label">Temporary data</div>
+      </div>
+    </div>
+
+    <div class="info-card">
+      <svg class="info-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+      </svg>
+      <p>Passwords, logins, bookmarks, and saved data are never deleted.</p>
+    </div>
+  </div>
+
+  <!-- Safe Info Screen -->
+  <div id="safeScreen" class="screen">
+    <div class="header">
+      <button class="back-btn" id="backFromSafe">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M19 12H5M12 19l-7-7 7-7"/>
+        </svg>
+      </button>
+      <h1>What's Protected</h1>
+    </div>
+
+    <div class="safe-grid">
+      <div class="safe-item">
+        <div class="safe-icon">🔐</div>
+        <span>Passwords</span>
+      </div>
+      <div class="safe-item">
+        <div class="safe-icon">👤</div>
+        <span>Logins</span>
+      </div>
+      <div class="safe-item">
+        <div class="safe-icon">🏦</div>
+        <span>Banking</span>
+      </div>
+      <div class="safe-item">
+        <div class="safe-icon">⭐</div>
+        <span>Bookmarks</span>
+      </div>
+      <div class="safe-item">
+        <div class="safe-icon">📜</div>
+        <span>History</span>
+      </div>
+      <div class="safe-item">
+        <div class="safe-icon">📥</div>
+        <span>Downloads</span>
+      </div>
+    </div>
+
+    <div class="info-card">
+      <p>Digital Clean Day only removes temporary clutter. Your important data stays completely safe.</p>
+    </div>
+  </div>
+
+  <!-- Why Clean Screen -->
+  <div id="whyScreen" class="screen">
+    <div class="header">
+      <button class="back-btn" id="backFromWhy">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M19 12H5M12 19l-7-7 7-7"/>
+        </svg>
+      </button>
+      <h1>Why Clean?</h1>
+    </div>
+
+    <div class="benefits-list">
+      <div class="benefit-card">
+        <div class="benefit-icon">⚡</div>
+        <div class="benefit-content">
+          <h3>Faster Browsing</h3>
+          <p>Less clutter means faster page loads and smoother performance</p>
+        </div>
+      </div>
+
+      <div class="benefit-card">
+        <div class="benefit-icon">🛡️</div>
+        <div class="benefit-content">
+          <h3>Better Privacy</h3>
+          <p>Remove tracking cookies and protect your online activity</p>
+        </div>
+      </div>
+
+      <div class="benefit-card">
+        <div class="benefit-icon">🧘</div>
+        <div class="benefit-content">
+          <h3>Mental Clarity</h3>
+          <p>A clean digital space reduces stress and improves focus</p>
+        </div>
+      </div>
+
+      <div class="benefit-card">
+        <div class="benefit-icon">💾</div>
+        <div class="benefit-content">
+          <h3>Save Space</h3>
+          <p>Free up valuable disk space on your device</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Cleaning Screen -->
+  <div id="cleaningScreen" class="screen">
+    <div class="cleaning-content">
+      <div class="cleaning-animation">
+        <div class="spinner"></div>
+        <div class="pulse-ring"></div>
+      </div>
+      
+      <h2 class="cleaning-title">Cleaning in progress...</h2>
+      
+      <div class="cleaning-steps">
+        <div class="step" id="step1">
+          <div class="step-icon">🗂️</div>
+          <span>Closing unused tabs</span>
+        </div>
+        <div class="step" id="step2">
+          <div class="step-icon">🍪</div>
+          <span>Removing tracking cookies</span>
+        </div>
+        <div class="step" id="step3">
+          <div class="step-icon">💾</div>
+          <span>Clearing temporary data</span>
+        </div>
+      </div>
+
+      <div class="info-card">
+        <svg class="info-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+        </svg>
+        <p>Your important data is safe</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Success Screen -->
+  <div id="successScreen" class="screen">
+    <div class="success-content">
+      <div class="success-animation">
+        <div class="success-checkmark">
+          <svg viewBox="0 0 52 52">
+            <circle class="checkmark-circle" cx="26" cy="26" r="25" fill="none"/>
+            <path class="checkmark-check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8"/>
+          </svg>
+        </div>
+      </div>
+
+      <h2 class="success-title">All Clean! ✨</h2>
+      <p class="success-subtitle">Your browser is now fresh and optimized</p>
+
+      <div class="results-grid">
+        <div class="result-card">
+          <div class="result-number" id="resultTabs">0</div>
+          <div class="result-label">Tabs closed</div>
+        </div>
+        <div class="result-card">
+          <div class="result-number" id="resultCookies">0</div>
+          <div class="result-label">Cookies removed</div>
+        </div>
+        <div class="result-card">
+          <div class="result-number" id="resultStorage">0</div>
+          <div class="result-label">MB cleared</div>
+        </div>
+      </div>
+
+      <div class="info-card success-info">
+        <p>Regular cleaning keeps your browser fast, private, and clutter-free.</p>
+      </div>
+
+      <div class="success-actions">
+        <button id="restoreBtn" class="secondary-btn">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/>
+            <polyline points="9 22 9 12 15 12 15 22"/>
+          </svg>
+          Restore Tabs
+        </button>
+        <button id="doneBtn" class="primary-btn">
+          <span>Done</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+</html>

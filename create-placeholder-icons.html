@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Create Placeholder Icons</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      max-width: 600px;
+      margin: 50px auto;
+      padding: 20px;
+      text-align: center;
+    }
+    h1 { color: #3498db; }
+    .instructions {
+      background: #f8f9fa;
+      padding: 20px;
+      border-radius: 8px;
+      margin: 20px 0;
+      text-align: left;
+    }
+    button {
+      background: #3498db;
+      color: white;
+      border: none;
+      padding: 12px 24px;
+      font-size: 16px;
+      border-radius: 6px;
+      cursor: pointer;
+      margin: 10px;
+    }
+    button:hover {
+      background: #2980b9;
+    }
+    .canvas-container {
+      margin: 20px 0;
+    }
+    canvas {
+      border: 1px solid #ddd;
+      margin: 10px;
+    }
+  </style>
+</head>
+<body>
+  <h1>🧹 Digital Clean Day - Icon Generator</h1>
+  
+  <div class="instructions">
+    <h3>Quick Placeholder Icons</h3>
+    <p>This tool creates simple placeholder icons for testing the extension.</p>
+    <ol>
+      <li>Click "Generate Icons" below</li>
+      <li>Right-click each icon and "Save image as..."</li>
+      <li>Save them in the <code>icons/</code> folder with these names:
+        <ul>
+          <li>icon16.png</li>
+          <li>icon48.png</li>
+          <li>icon128.png</li>
+        </ul>
+      </li>
+      <li>Load the extension in Chrome</li>
+    </ol>
+    <p><strong>Note:</strong> These are simple placeholders. For production, use proper icons from a designer or icon generator.</p>
+  </div>
+
+  <button onclick="generateIcons()">Generate Icons</button>
+
+  <div class="canvas-container" id="canvasContainer"></div>
+
+  <script>
+    function generateIcons() {
+      const container = document.getElementById('canvasContainer');
+      container.innerHTML = '';
+      
+      const sizes = [16, 48, 128];
+      
+      sizes.forEach(size => {
+        const canvas = document.createElement('canvas');
+        canvas.width = size;
+        canvas.height = size;
+        const ctx = canvas.getContext('2d');
+        
+        // Draw background
+        ctx.fillStyle = '#3498db';
+        ctx.fillRect(0, 0, size, size);
+        
+        // Draw broom emoji or simple icon
+        ctx.fillStyle = 'white';
+        ctx.font = `${size * 0.6}px Arial`;
+        ctx.textAlign = 'center';
+        ctx.textBaseline = 'middle';
+        ctx.fillText('🧹', size / 2, size / 2);
+        
+        // Add label
+        const label = document.createElement('p');
+        label.textContent = `icon${size}.png (${size}x${size})`;
+        label.style.margin = '5px';
+        
+        container.appendChild(label);
+        container.appendChild(canvas);
+        container.appendChild(document.createElement('br'));
+      });
+      
+      alert('Icons generated! Right-click each icon and "Save image as..." to download.');
+    }
+  </script>
+</body>
+</html>
