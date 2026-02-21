@@ -1,5 +1,5 @@
-// Digital Clean Day - Background Service Worker
-// Handles automatic scheduled cleaning and tab tracking
+// Digital Clean Day - Background Service Worker.
+// Handles automatic scheduled cleaning and tab tracking.
 
 // Screen time tracking variables
 let sessionStartTime = Date.now();
