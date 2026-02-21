@@ -1,4 +1,4 @@
-# 🧹 Digital Clean Day
+# 🧹 Digital Clean Day...
 
 A modern, premium Chrome Extension that helps you maintain a clean browser and track your digital wellbeing.
 
